@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+</head>
+<body>
+
+
+<img src="{{url_for('static', filename= img_url )}}" alt="Room image" width="500" height="333">
+<ul>
+        <li>
+            <h1>{{ img_url }}</h1>
+            <h1>{{ labels }}</h1>
+        </li>
+</ul>
+
+<title>Reusable Form Demo</title>
+            <link rel="stylesheet" media="screen" href="static/bootstrap-4.4.1-dist/css/bootstrap.min.css">
+            <link rel="stylesheet" href="static/bootstrap-4.4.1-dist/css/bootstrap-theme.min.css">
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<div class="container">
+  <h2>Room Image Classification Tool</h2>
+  <h3>Upload new File</h3>
+
+    <form action="" method="post" role="form" enctype="multipart/form-data">
+      <div class="form-group">
+        <label for="image_url">Name:</label>
+            <input type="file" class="form-control" id="image_url_id" name="image_url" placeholder="Input an image url">
+      </div>
+            <button type="submit" class="btn btn-success">Upload</button>
+    </form>
+</div>
+
+</body>
+
+</html>

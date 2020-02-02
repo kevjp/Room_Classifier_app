@@ -1,0 +1,47 @@
+<html>
+
+<title>Upload new File</title>
+            <link rel="stylesheet" media="screen" href="static/bootstrap-4.4.1-dist/css/bootstrap.min.css">
+            <link rel="stylesheet" href="static/bootstrap-4.4.1-dist/css/bootstrap-theme.min.css">
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<div class="container">
+  <h2>Room Image Classification Tool</h2>
+  <h3>Upload new File</h3>
+
+    <form action="" method="post" role="form" enctype="multipart/form-data">
+      {{ form.csrf }}
+      <div class="form-group">
+        <label for="image_url">Name:</label>
+            <input type="file" class="form-control" id="image_url_id" name="image_url" placeholder="Input an image url">
+      </div>
+            <button type="submit" class="btn btn-success">Upload</button>
+    </form>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+
+{% if messages %}
+
+  {% for message in messages %}
+    {% if "Error" not in message[1]: %}
+
+
+    <div class="alert alert-info">
+        <strong>Enter a url path to a room image and the Room Image Classification Tool will return a classification of room type and identify other marketable features. </strong>
+    </div>
+    {% endif %}
+
+    {% if "Error" in message[1]: %}
+
+    <div class="alert alert-warning">
+        {{ message[1] }}
+    </div>
+    {% endif %}
+  {% endfor %}
+
+{% endif %}
+{% endwith %}
+
+</div>
+
+</html>
