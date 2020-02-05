@@ -11,6 +11,8 @@ import imutils
 import pickle
 import cv2
 import os
+import tensorflow.compat.v1 as tf
+tf.disable_v2_behavior()
 
 
 class Classify_image:
@@ -20,6 +22,7 @@ class Classify_image:
         self.labelbin = labelbin
         # load the trained convolutional neural network and the multi-label binarizer
         print("[INFO] loading network...")
+        print("extra check")
         self.loaded_model = load_model(self.model)
         self.mlb = pickle.loads(open(self.labelbin, "rb").read())
 
@@ -79,11 +82,11 @@ def main():
     args = vars(ap.parse_args())
 
 
-    classify = Classify_image(args["model"], args["labelbin"], args["image"])
-    classify.load_image()
-    classify.classify_image()
+    # classify = Classify_image(args["model"], args["labelbin"], args["image"])
+    # classify.load_image()
+    # classify.classify_image()
 
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

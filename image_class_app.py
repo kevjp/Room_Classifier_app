@@ -1,9 +1,12 @@
 from flask import Flask, render_template, flash, request, redirect, url_for
 from wtforms import Form, TextField, TextAreaField, validators, StringField, SubmitField
-from classify_module import Classify_image
+import classify_module
 from werkzeug.utils import secure_filename
 import os
 import tensorflow as tf
+import tensorflow.compat.v1 as tf
+tf.disable_v2_behavior()
+
 
 # App config.
 DEBUG = True
@@ -16,9 +19,10 @@ ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
-model = '/Users/kevinryan/Documents/DataScienceMSc/Rightmove/Results_google_images_resnet_classifiers/grid_searches/folder_2019-11-15_inception_resnet_alldata/resnet_classifier'
-labelbin = '/Users/kevinryan/Documents/DataScienceMSc/Rightmove/Results_google_images_resnet_classifiers/grid_searches/folder_2019-11-15_inception_resnet_alldata/binerizer_object'
-classify = Classify_image(model, labelbin)
+# model = '/Users/kevinryan/Documents/DataScienceMSc/Rightmove/Results_google_images_resnet_classifiers/grid_searches/folder_2019-11-15_inception_resnet_alldata/resnet_classifier'
+model = './classifier/resnet_classifier'
+labelbin = './classifier/binerizer_object'
+classify = classify_module.Classify_image(model, labelbin)
 
 graph = tf.get_default_graph()
 
@@ -73,40 +77,40 @@ def upload_file():
 image_url = TextField('Name:', validators=[validators.required()])
 
 
-@app.route("/", methods=['GET', 'POST'])
-def classify_im():
-    # form = ReusableForm(request.form)
+# @app.route("/", methods=['GET', 'POST'])
+# def classify_im():
+#     # form = ReusableForm(request.form)
 
-    model = '/Users/kevinryan/Documents/DataScienceMSc/Rightmove/Results_google_images_resnet_classifiers/grid_searches/folder_2019-11-15_inception_resnet_alldata/resnet_classifier'
-    labelbin = '/Users/kevinryan/Documents/DataScienceMSc/Rightmove/Results_google_images_resnet_classifiers/grid_searches/folder_2019-11-15_inception_resnet_alldata/binerizer_object'
+#     model = '/Users/kevinryan/Documents/DataScienceMSc/Rightmove/Results_google_images_resnet_classifiers/grid_searches/folder_2019-11-15_inception_resnet_alldata/resnet_classifier'
+#     labelbin = '/Users/kevinryan/Documents/DataScienceMSc/Rightmove/Results_google_images_resnet_classifiers/grid_searches/folder_2019-11-15_inception_resnet_alldata/binerizer_object'
 
-    # print(request.form.errors)
-    if request.method == 'POST':
-        image_url=request.form['image_url']
-        print(image_url)
-        print("check",request.form['image_url'])
-        return render_template("output.html", img_url = request.form['image_url'])
+#     # print(request.form.errors)
+#     if request.method == 'POST':
+#         image_url=request.form['image_url']
+#         print(image_url)
+#         print("check",request.form['image_url'])
+#         return render_template("output.html", img_url = request.form['image_url'])
 
-    if request.method == 'GET':
-        # Save the comment here.
-        # classify = Classify_image(model, labelbin, image_url)
-        # classify.load_image()
-        # classify.classify_image()
-        return render_template('image_url_input.html', form=request.form)
+#     if request.method == 'GET':
+#         # Save the comment here.
+#         # classify = Classify_image(model, labelbin, image_url)
+#         # classify.load_image()
+#         # classify.classify_image()
+#         return render_template('image_url_input.html', form=request.form)
 
-    # else:
-    #     print("nothing entered")
-    #     flash('All the form fields are required. ')
-    #     return render_template('image_url_input.html', form=form)
+#     # else:
+#     #     print("nothing entered")
+#     #     flash('All the form fields are required. ')
+#     #     return render_template('image_url_input.html', form=form)
 
-@app.route("/output")
-def output():
+# @app.route("/output")
+# def output():
 
-    return render_template("output.html", te = request.form['image_url'])
+#     return render_template("output.html", te = request.form['image_url'])
 
 
 
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0')
+    app.run(host='0.0.0.0', use_reloader=False)
