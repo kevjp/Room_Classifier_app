@@ -22,7 +22,7 @@ application.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 # model = '/Users/kevinryan/Documents/DataScienceMSc/Rightmove/Results_google_images_resnet_classifiers/grid_searches/folder_2019-11-15_inception_resnet_alldata/resnet_classifier'
 model = './classifier/resnet_classifier'
 labelbin = './classifier/binerizer_object'
-classify = classify_module.Classify_image(model, labelbin)
+# classify = classify_module.Classify_image(model, labelbin)
 
 graph = tf.get_default_graph()
 
@@ -30,7 +30,7 @@ def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-@app.route('/')
+@application.route('/')
 def hello_world():
     return 'Hello, World!'
 
