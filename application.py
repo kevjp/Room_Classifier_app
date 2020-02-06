@@ -1,6 +1,6 @@
 from flask import Flask, render_template, flash, request, redirect, url_for
 from wtforms import Form, TextField, TextAreaField, validators, StringField, SubmitField
-# import classify_module
+import classify_module
 from werkzeug.utils import secure_filename
 import os
 import tensorflow as tf
@@ -22,7 +22,7 @@ application.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 # model = '/Users/kevinryan/Documents/DataScienceMSc/Rightmove/Results_google_images_resnet_classifiers/grid_searches/folder_2019-11-15_inception_resnet_alldata/resnet_classifier'
 model = './classifier/resnet_classifier'
 labelbin = './classifier/binerizer_object'
-# classify = classify_module.Classify_image(model, labelbin)
+classify = classify_module.Classify_image(model, labelbin)
 
 graph = tf.get_default_graph()
 
