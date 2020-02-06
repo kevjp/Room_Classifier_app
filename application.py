@@ -1,6 +1,6 @@
 from flask import Flask, render_template, flash, request, redirect, url_for
 from wtforms import Form, TextField, TextAreaField, validators, StringField, SubmitField
-import classify_module
+# import classify_module
 from werkzeug.utils import secure_filename
 import os
 import tensorflow as tf
@@ -30,37 +30,44 @@ def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-@app.route('/', methods=['GET', 'POST'])
-def upload_file():
-    if request.method == 'POST':
-        # print("check",request.form['file'])
-        print("check2",request.files)
-        # check if the post request has the file part
-        if 'image_url' not in request.files:
-            flash('No file part')
-            return redirect(request.url)
-        # file = request.form['file']
-        file = request.files['image_url']
-        print("check3",file.filename)
-        # if user does not select file, browser also
-        # submit a empty part without filename
-        if file.filename == '':
-            flash('No selected file')
-            return redirect(request.url)
-        if file and allowed_file(file.filename):
+@app.route('/')
+def hello_world():
+    return 'Hello, World!'
 
-            filename = secure_filename(file.filename)
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            full_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-            # print("check1",classify)
-            # classify = Classify_image(model, labelbin)
-            classify.load_image(full_path)
-            global graph
-            with graph.as_default():
-                labels = classify.classify_image()
-            return render_template("output.html", img_url = file.filename, labels = labels)
-    else:
-        return render_template('image_url_input.html', form=request.form)
+
+# @app.route('/', methods=['GET', 'POST'])
+# def upload_file():
+#     if request.method == 'POST':
+#         # print("check",request.form['file'])
+#         print("check2",request.files)
+#         # check if the post request has the file part
+#         if 'image_url' not in request.files:
+#             flash('No file part')
+#             return redirect(request.url)
+#         # file = request.form['file']
+#         file = request.files['image_url']
+#         print("check3",file.filename)
+#         # if user does not select file, browser also
+#         # submit a empty part without filename
+#         if file.filename == '':
+#             flash('No selected file')
+#             return redirect(request.url)
+#         if file and allowed_file(file.filename):
+
+#             filename = secure_filename(file.filename)
+#             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+#             full_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+#             # print("check1",classify)
+#             # classify = Classify_image(model, labelbin)
+#             classify.load_image(full_path)
+#             global graph
+#             with graph.as_default():
+#                 labels = classify.classify_image()
+#             return render_template("output.html", img_url = file.filename, labels = labels)
+#     else:
+#         return render_template('image_url_input.html', form=request.form)
+
+
     # return '''
     # <!doctype html>
     # <title>Upload new File</title>
