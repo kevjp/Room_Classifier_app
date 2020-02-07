@@ -20,8 +20,8 @@ ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
 application.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 # model = '/Users/kevinryan/Documents/DataScienceMSc/Rightmove/Results_google_images_resnet_classifiers/grid_searches/folder_2019-11-15_inception_resnet_alldata/resnet_classifier'
-model = '/usr/local/share/resnet_classifier'
-labelbin = '/usr/local/share/binerizer_object'
+model = '/home/ec2-user/resnet_classifier'
+labelbin = '/home/ec2-user/binerizer_object'
 classify = classify_module.Classify_image(model, labelbin)
 
 graph = tf.get_default_graph()
