@@ -120,5 +120,5 @@ image_url = TextField('Name:', validators=[validators.required()])
 
 
 if __name__ == '__main__':
-    application.run()
+    application.run(use_reloader=False)
     # application.run(host='0.0.0.0', use_reloader=False)
