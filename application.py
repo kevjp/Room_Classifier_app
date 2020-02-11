@@ -19,7 +19,10 @@ ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
 
 application.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
+# print(application.config['UPLOAD_FOLDER'])
+
 # model = '/Users/kevinryan/Documents/DataScienceMSc/Rightmove/Results_google_images_resnet_classifiers/grid_searches/folder_2019-11-15_inception_resnet_alldata/resnet_classifier'
+# labelbin = '/Users/kevinryan/Documents/DataScienceMSc/Rightmove/Results_google_images_resnet_classifiers/grid_searches/folder_2019-11-15_inception_resnet_alldata/binerizer_object'
 model = '/tmp/resnet_classifier'
 labelbin = 'binerizer_object'
 classify = classify_module.Classify_image(model, labelbin)
@@ -55,8 +58,8 @@ def upload_file():
         if file and allowed_file(file.filename):
 
             filename = secure_filename(file.filename)
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            full_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+            file.save(os.path.join(application.config['UPLOAD_FOLDER'], filename))
+            full_path = os.path.join(application.config['UPLOAD_FOLDER'], filename)
             # print("check1",classify)
             # classify = Classify_image(model, labelbin)
             classify.load_image(full_path)
