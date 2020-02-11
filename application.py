@@ -15,7 +15,8 @@ application = Flask(__name__)
 application.config.from_object(__name__)
 application.config['SECRET_KEY'] = '7d441f27d441f27567d441f2b6176a'
 
-UPLOAD_FOLDER = '/Users/kevinryan/Documents/DataScienceMSc/Rightmove/Rightmove/Flask_app/static'
+# UPLOAD_FOLDER = '/Users/kevinryan/Documents/DataScienceMSc/Rightmove/Rightmove/Flask_app/static'
+UPLOAD_FOLDER = '/opt/python/current/app/static'
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
 
 application.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
