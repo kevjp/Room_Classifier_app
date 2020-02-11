@@ -3,6 +3,7 @@ from wtforms import Form, TextField, TextAreaField, validators, StringField, Sub
 import classify_module
 from werkzeug.utils import secure_filename
 import os
+os.environ["CUDA_VISIBLE_DEVICES"]="-1"
 import tensorflow as tf
 import tensorflow.compat.v1 as tf
 tf.disable_v2_behavior()
