@@ -1,9 +1,23 @@
 <html>
-
+<head>
 <title>Upload new File</title>
             <link rel="stylesheet" media="screen" href="static/bootstrap-4.4.1-dist/css/bootstrap.min.css">
             <link rel="stylesheet" href="static/bootstrap-4.4.1-dist/css/bootstrap-theme.min.css">
        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
+</head>
+
+
+<script type="text/javascript">
+  // Wait for window load
+  $(window).load(function() {
+    // Animate loader off screen
+    $(".se-pre-con").fadeOut("slow");;
+  });
+</script>
+
+<body>
 
 <div class="container">
   <h2>Room Image Classification Tool</h2>
@@ -43,5 +57,5 @@
 {% endwith %}
 
 </div>
-
+</body>
 </html>
