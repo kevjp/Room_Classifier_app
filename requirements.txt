@@ -17,7 +17,7 @@ imutils==0.5.3
 itsdangerous==1.1.0
 Jinja2==2.11.1
 joblib==0.14.1
-Keras==2.3.0
+Keras==2.2.4
 Keras-Applications==1.0.8
 keras-importance-sampling==0.8
 Keras-Preprocessing==1.0.5
@@ -38,7 +38,7 @@ scikit-learn==0.22.1
 scipy==1.4.1
 six==1.14.0
 sklearn==0.0
-tensorflow==2.0.0b1
+tensorflow==1.13.1
 termcolor==1.1.0
 urllib3==1.25.8
 Werkzeug==0.16.1
