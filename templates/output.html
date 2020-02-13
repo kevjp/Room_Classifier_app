@@ -1,28 +1,50 @@
-<!DOCTYPE html>
 <html>
 <head>
   <title></title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+          <link rel="stylesheet" media="screen" href="static/bootstrap-4.4.1-dist/css/bootstrap.min.css">
+          <link rel="stylesheet" href="static/bootstrap-4.4.1-dist/css/bootstrap-theme.min.css">
+          <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 </head>
 <body>
 
 <header>
      <div id="company_logo"></div>
 </header>
-<img src="{{url_for('static', filename= img_url )}}" alt="Room image" width="500" height="333">
-<ul>
-        <li>
-            <h1>{{ img_url }}</h1>
-            <h1>{{ labels }}</h1>
-        </li>
-</ul>
 
-<title>Reusable Form Demo</title>
-            <link rel="stylesheet" media="screen" href="static/bootstrap-4.4.1-dist/css/bootstrap.min.css">
-            <link rel="stylesheet" href="static/bootstrap-4.4.1-dist/css/bootstrap-theme.min.css">
-       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<div class="top-buffer"> </div>
 <div class="container">
+
+<img src="{{url_for('static', filename= img_url )}}" alt="Room image" width="500" height="333">
+
+{% set features = [] %}
+{% set room = '' %}
+{% set featurecompare = ['Wood Floor', 'Fireplace', 'Skylight', 'Kitchen Island'] %}
+<table>
+<tr>
+  <th>Image File Name</th>
+  <th>Room Type</th>
+  <th>% Confidence</th>
+  <th>Identified Features</th>
+</tr>
+{% for item in labels %}
+  {% set item_list = item.split(':') %}
+  {% if item_list[0] in featurecompare %}
+    {{ features.append(item_list[0]) }}
+  {% else %}
+    {% set room = item_list[0] %}
+    <tr>
+    <td class="c1">{{ img_url }}</td>
+    <td class="c2">{{ room }}</td>
+    <td class="c3">{{ item_list[1] }}</td>
+  {% endif %}
+{% endfor %}
+   <td class="c4">{{ features|join(', ') }}</td>
+</tr>
+</table>
+
+
   <h2>Room Image Classification Tool</h2>
   <h3>Upload new File</h3>
 
