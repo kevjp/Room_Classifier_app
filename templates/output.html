@@ -19,8 +19,9 @@
 <img src="{{url_for('static', filename= img_url )}}" alt="Room image" width="500" height="333">
 
 {% set features = [] %}
-{% set room = '' %}
+{% set feat = namespace (vals = '') %}
 {% set featurecompare = ['Wood Floor', 'Fireplace', 'Skylight', 'Kitchen Island'] %}
+
 <table>
 <tr>
   <th>Image File Name</th>
@@ -31,7 +32,7 @@
 {% for item in labels %}
   {% set item_list = item.split(':') %}
   {% if item_list[0] in featurecompare %}
-    {{ features.append(item_list[0]) }}
+    {% set feat.vals = feat.vals + item_list[0] + ', ' %}
   {% else %}
     {% set room = item_list[0] %}
     <tr>
@@ -40,7 +41,7 @@
     <td class="c3">{{ item_list[1] }}</td>
   {% endif %}
 {% endfor %}
-   <td class="c4">{{ features|join(', ') }}</td>
+<td class="c4">{{ feat.vals }}</td>
 </tr>
 </table>
 
